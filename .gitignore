@@ -1,0 +1,37 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment folders
+venv/
+ENV/
+env/
+.venv/
+
+# Django SQLite database file
+db.sqlite3
+
+# Django migrations folder
+*/migrations/
+
+# Media and static files
+media/
+static/
+
+# Ignore local environment variables or configuration files
+*.env
+*.local
+
+# Ignore log files
+*.log
+
+# Ignore IDE or text editor files
+.idea/
+.vscode/
+*.swp
+
+# Ignore system files
+.DS_Store
+Thumbs.db

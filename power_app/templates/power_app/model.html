@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model - Solar Energy Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'input_page' %}">Home</a>
+        <a href="{% url 'idea_page' %}">Idea</a>
+        <a href="{% url 'model_page' %}">Model</a>
+        <a href="{% url 'about_us_page' %}">About Me</a>
+    </nav>
+    <header>
+        <h1>Model - Solar Energy Prediction</h1>
+        <p>Explaining Prophet Model vs. Random Forest Regressor for Solar Energy Forecasting</p>
+    </header>
+    <div class="content-section">
+        <h2>Overview</h2>
+        <p>This page delves deep into two machine learning models—<strong>Prophet</strong> and <strong>Random Forest Regressor</strong>—that are utilized for solar energy prediction tasks. We will explore their inner workings, strengths, and weaknesses, as well as compare their performance for forecasting energy generation based on historical data.</p>
+
+        <h3>1. Prophet Model</h3>
+        <p>Prophet is a time-series forecasting tool developed by Facebook, designed to handle time series data with multiple seasonal patterns and missing data. It works by modeling the data as an additive decomposition, where the overall prediction is the sum of a trend component, a seasonal component, and a holiday component. This makes Prophet ideal for solar energy prediction, as it can model the recurring daily and seasonal variations in solar power generation.</p>
+
+        <p>Prophet uses three main components to model the time series:</p>
+        <ul>
+            <li><strong>Trend:</strong> Captures the long-term growth or decay in the time series data. The trend is modeled using a piecewise linear or logistic growth curve, where the data is allowed to change at different rates over time.</li>
+            <li><strong>Seasonality:</strong> Models periodic fluctuations in the data that repeat at regular intervals. For solar energy, this could capture daily, weekly, and yearly cycles of sunlight and energy generation. Prophet uses Fourier series to model seasonality, allowing for flexible, smooth patterns.</li>
+            <li><strong>Holiday Effects:</strong> Captures the effects of holidays or special events that might have a significant impact on the data, such as government holidays or public events that change the energy usage patterns.</li>
+        </ul>
+
+        <h4>Advantages of Prophet for Solar Energy Prediction:</h4>
+        <ul>
+            <li><strong>Handles Missing Data:</strong> Prophet can handle gaps in the data, making it ideal for real-world solar energy data that may have missing entries due to sensor errors or other interruptions.</li>
+            <li><strong>Seasonality Modeling:</strong> Prophet can model complex seasonal patterns (e.g., hourly, daily, yearly), which is particularly useful for solar energy generation, as sunlight follows predictable seasonal cycles.</li>
+            <li><strong>Interpretability:</strong> Prophet provides clear decomposition of the forecast into trend, seasonality, and holidays, which can be very useful for understanding the model's behavior.</li>
+        </ul>
+
+        <h4>Hyperparameter Tuning for Prophet:</h4>
+        <p>In Prophet, hyperparameters mainly control the modeling of the trend, seasonality, and holidays. These parameters can be adjusted to improve the model's accuracy. The key hyperparameters used in your model are:</p>
+        <ul>
+            <li><strong>growth:</strong> Determines the trend type ('linear' or 'logistic'). For solar energy data, the logistic growth option is often used to model saturation or limits in solar power generation.</li>
+            <li><strong>changepoint_prior_scale:</strong> Controls the flexibility of the trend by adjusting how sensitive the trend is to abrupt changes. A higher value allows more flexibility in fitting sudden changes, while a lower value gives a smoother trend.</li>
+            <li><strong>seasonality_prior_scale:</strong> Adjusts the strength of the seasonal component. A higher value makes the model more sensitive to seasonality.</li>
+            <li><strong>holidays_prior_scale:</strong> Similar to the seasonality prior, this adjusts the influence of holidays on the model. It allows the model to account for specific events (e.g., holidays) that affect energy generation.</li>
+        </ul>
+        <p>Here's an example of how hyperparameters can be tuned in Prophet:</p>
+        <code>
+            from fbprophet import Prophet
+            model = Prophet(growth='logistic', changepoint_prior_scale=0.1, seasonality_prior_scale=10.0)
+            model.fit(df)
+            forecast = model.predict(future)
+        </code>
+        <h4>Model Performance Visualization</h4>
+        <img src="{% static 'images/prophet_accuracy.png' %}" alt="Model Performance"class="performance">
+        <h4>Model Components</h4>
+        <img src="{% static 'images/prophet_forecast_components.png' %}" alt="Model Performance">
+    </div>
+
+    <div class="content-section section-gap">
+        <h3>2. Random Forest Regressor</h3>
+        <p>Random Forest is an ensemble learning method based on decision trees. A Random Forest regressor builds multiple decision trees and averages their results to improve predictive accuracy. It is a flexible and powerful model capable of handling non-linear relationships, interactions between multiple features, and large datasets. It doesn't require explicitly modeling trends or seasonality, which makes it suitable for cases where such patterns are not well-defined or where external factors interact in complex ways.</p>
+
+        <p>The Random Forest model works by creating a collection of decision trees. Each tree is trained on a random subset of the data, and during prediction, each tree provides an output, which is then averaged or voted upon to produce the final result. This ensemble approach helps reduce overfitting, improving generalization and accuracy.</p>
+
+        <h4>Advantages of Random Forest for Solar Energy Prediction:</h4>
+        <ul>
+            <li><strong>Handles Complex Interactions:</strong> Random Forest is excellent at capturing complex, non-linear relationships between input features, such as time of day, temperature, and cloud cover, which are crucial for predicting solar energy generation.</li>
+            <li><strong>No Need for Feature Engineering:</strong> Unlike Prophet, which requires explicit modeling of trends and seasonality, Random Forest automatically identifies important features and interactions from the data.</li>
+            <li><strong>Robust to Overfitting:</strong> By averaging the results of multiple decision trees, Random Forest mitigates overfitting and tends to generalize well to unseen data.</li>
+        </ul>
+
+        <h4>Hyperparameter Tuning for Random Forest:</h4>
+        <p>Hyperparameter tuning in Random Forest involves adjusting parameters that control the number of trees, the depth of each tree, and how splits are made in the decision trees. The key hyperparameters used in your model are:</p>
+        <ul>
+            <li><strong>n_estimators:</strong> The number of trees in the forest. More trees generally lead to better performance, but can also increase computational cost.</li>
+            <li><strong>max_depth:</strong> Controls the maximum depth of each tree. Deeper trees capture more complex relationships but may overfit the training data. A shallow tree is more general but may underfit.</li>
+            <li><strong>min_samples_split:</strong> The minimum number of samples required to split an internal node. A higher value can prevent overfitting by forcing the model to make more generalized splits.</li>
+            <li><strong>min_samples_leaf:</strong> The minimum number of samples required to be at a leaf node. Similar to `min_samples_split`, this parameter helps control overfitting by smoothing the model.</li>
+        </ul>
+        <p>Here's how you might tune the Random Forest regressor in Python:</p>
+        <code>
+            from sklearn.ensemble import RandomForestRegressor
+            rf_model = RandomForestRegressor(n_estimators=100, max_depth=10, min_samples_split=4, min_samples_leaf=2)
+            rf_model.fit(X_train, y_train)
+            y_pred = rf_model.predict(X_test)
+        </code>
+        <h4>Model Performance Visualization</h4>
+        <img src="{% static 'images/rfr_accuracy.png' %}" alt="Model Performance" class="performance">
+    </div>
+
+    <div class="content-section section-gap">
+        <h3>3. Comparison: Prophet vs. Random Forest</h3>
+        <p>Both models offer significant advantages for solar energy prediction, but they have key differences that make them suited for different tasks. Here's a detailed comparison:</p>
+
+        <h4>Key Differences:</h4>
+        <ul>
+            <li><strong>Seasonality Handling:</strong> Prophet explicitly models seasonal patterns (e.g., daily, yearly), while Random Forest handles interactions between features but doesn't directly model seasonality. For instance, Random Forest may perform better when there are many interacting features like temperature, humidity, and cloud coverage.</li>
+            <li><strong>Flexibility:</strong> Prophet requires manual tuning for specific seasonalities (e.g., adding yearly seasonality or holidays), while Random Forest can automatically handle a wide range of input features and interactions without additional configuration.</li>
+            <li><strong>Interpretability:</strong> Prophet provides clear decomposition of the forecast into components (trend, seasonality, holidays), which makes it easier to understand the drivers of the forecast. Random Forest, while powerful, is often considered a "black-box" model and harder to interpret.</li>
+        </ul>
+
+        <h4>Performance Comparison:</h4>
+        <ul>
+            <li><strong>Prophet:</strong> Works best when the data has clear, repeating seasonal patterns (like solar energy generation that follows daily cycles). It performs well with sparse or missing data.</li>
+            <li><strong>Random Forest:</strong> May outperform Prophet when the data has complex, non-linear relationships and interactions between features (e.g., time of day, cloud coverage, or geographical features). It requires more data and can be computationally expensive.</li>
+        </ul>
+
+        <h4>Results:</h4>
+        <ul>
+            <li><strong>Prophet:</strong> RMSE = 0.42, NRMSE % = 21.79%</li>
+            <li><strong>Random Forest:</strong> RMSE = 0.62, NRMSE % = 36.11%</li>
+        </ul>
+        <p>While both models perform well, Random Forest may have a slight edge in handling non-linear interactions, but Prophet remains an excellent choice for time-series data with strong seasonal patterns.</p>
+    </div>
+
+
+
+    <footer>
+        <p>© 2024 <a href="https://github.com/mohakapoor" target="_blank">Mohak Kapoor</a></p>
+    </footer>
+</body>
+</html>

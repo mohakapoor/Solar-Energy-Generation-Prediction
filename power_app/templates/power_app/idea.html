@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The IDEA - Solar Energy Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'input_page' %}">Home</a>
+        <a href="{% url 'idea_page' %}">Idea</a>
+        <a href="{% url 'model_page' %}">Model</a>
+        <a href="{% url 'about_us_page' %}">About Me</a>
+    </nav>
+    <header>
+        <h1>The IDEA- Solar Energy Prediction</h1>
+        <p>In-depth Explanation of Our Solar Energy Prediction Project</p>
+    </header>
+    <div class="content-section">
+        <h2>Project Overview</h2>
+        <p>
+            The <strong>Solar Energy Prediction</strong> project focuses on utilizing weather data and advanced forecasting models to predict solar energy generation. By taking into account weather variables such as temperature, humidity, wind speed, and cloud coverage, the goal is to offer accurate predictions for solar power generation.
+        </p>
+        <p>
+            This tool is highly beneficial for solar power plants and energy providers who want to optimize the energy produced based on real-time weather conditions, allowing them to anticipate fluctuations and optimize resource utilization.
+        </p>
+        
+        <h2>Problem Statement</h2>
+        <p>
+            Solar power generation can vary significantly depending on factors like weather, time of day, and seasonal changes. The challenge is to predict how much solar energy can be generated at any given time, given these variable factors. While energy generation predictions are typically based on historical data, these can often fail to account for sudden weather changes or anomalies.
+        </p>
+        <p>
+            This project seeks to address this problem by combining historical energy data and real-time weather information into a predictive model. The result is an efficient way to forecast solar energy production based on hourly data, incorporating key weather variables that directly impact energy generation.
+        </p>
+
+        <h2>Modeling Approach</h2>
+        <p>
+            To tackle the problem of solar energy prediction, we used <strong>Facebook's Prophet model</strong>, a robust time-series forecasting technique designed to handle seasonal trends and irregular data. Prophet is well-suited for forecasting solar energy because it can handle large datasets, missing values, and noisy data, all common when working with weather data.
+        </p>
+        <p>
+            The Prophet model decomposes the time series data into three primary components: trend, seasonality, and holidays. The trend captures long-term variations (such as overall growth or decline in solar energy production), seasonality captures periodic fluctuations (such as daily or yearly cycles), and holidays/events account for anomalies caused by special events.
+        </p>
+        <p>
+            In addition to these components, we incorporate external factors like cloud coverage, temperature, and wind speed as regressors in the Prophet model. These weather-related variables help improve the model’s accuracy in forecasting solar energy generation.
+        </p>
+
+        <h2>Data Sources</h2>
+        <p>
+            The project leverages two key sources of data:
+        </p>
+        <ul>
+            <li><strong>Real-time weather data:</strong> This data is fetched from the <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API</a>, which provides up-to-date information about weather conditions in specific locations.</li>
+            <li><strong>Historical solar energy data:</strong> Data from local solar power plants or energy producers is used to train and validate the model. This historical data helps the model understand the typical patterns of solar energy production.</li>
+        </ul>
+        <p>
+            By combining these two data sources, the model can make highly accurate predictions of solar energy production based on real-time weather conditions.
+        </p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li><strong>Real-time weather data integration:</strong> The model automatically fetches live weather data to provide accurate predictions based on current conditions.</li>
+            <li><strong>Seasonal and hourly predictions:</strong> The model incorporates both daily and hourly seasonality to account for the cyclical nature of solar energy production.</li>
+            <li><strong>Weather-based regression:</strong> Weather factors like cloud coverage, wind speed, and temperature are included as input variables to improve forecast accuracy.</li>
+            <li><strong>Interactive web interface:</strong> The project provides an easy-to-use web interface that allows users to input their location and receive solar energy predictions instantly.</li>
+            <li><strong>Predictive insights:</strong> The model offers real-time insights into solar energy generation potential, helping power plants manage energy resources efficiently.</li>
+        </ul>
+
+        <h2>Project Significance</h2>
+        <p>
+            The significance of this project lies in its potential to optimize solar energy production. With accurate predictions, solar power plants can reduce the need for backup power sources (such as fossil fuels), reduce operational costs, and improve energy efficiency.
+        </p>
+        <p>
+            Additionally, this tool has a broad impact on the renewable energy industry, offering a scalable solution to predict solar energy generation for any location. The tool can be adapted to other regions beyond Delhi, expanding its applicability to solar energy markets worldwide.
+        </p>
+
+        <h2>Deployment</h2>
+        <p>
+            To make this tool widely accessible, the model is deployed as a web application built using <strong>Django</strong>. The Django framework allows us to create an easy-to-use interface for users to input location details (latitude and longitude) and receive solar energy predictions. The trained Prophet model, along with any preprocessing steps, is integrated into the backend of the web application, making it seamless for users to get real-time predictions.
+        </p>
+        <p>
+            Additionally, the model and scaler objects are saved using <code>joblib</code>, ensuring efficient loading and saving of trained models for quick predictions.
+        </p>
+
+        
+    </div>
+    <footer>
+        <p>© 2024 <a href="https://github.com/mohakapoor" target="_blank">Mohak Kapoor</a></p>
+    </footer>
+</body>
+</html>

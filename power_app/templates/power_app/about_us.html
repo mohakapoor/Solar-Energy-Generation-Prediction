@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet"  href="{% static 'css/style.css' %}">
+
+    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'input_page' %}">Home</a>
+        <a href="{% url 'idea_page' %}">Idea</a>
+        <a href="{% url 'model_page' %}">Model</a>
+        <a href="{% url 'about_us_page' %}">About Me</a>
+    </nav>
+    <header>
+        <h1>About Me</h1>
+    </header>
+    <div class="content-section">
+        <h2>Introduction</h2>
+        <p>Hi! I am Mohak Kapoor, and I am a BTECH Student pursuing Electronics and Communication Engineering. I have a passion for Machine Learning & Open Source Development and my goal is to become a Machine Learning Engineering and Quant down the line.</p>
+
+        <h3>Background</h3>
+        <p>I have a background in Data Structures and Algorithms, Machine Learning and Python . Over the years, I have worked on many projects involving Python Automation, Machine Learning. I am particularly interested in Machine Learning in Algorithmic Trading.</p>
+
+        <h3>Skills</h3>
+        <ul>
+            <li><strong>Python:</strong> I have extensive experience in Python, utilizing it for tasks ranging from data analysis and machine learning to backend web development. I apply Python in various projects such as developing machine learning models, automating workflows, and building data-driven applications. Python's simplicity and versatility make it an essential tool in my toolkit.</li>
+
+            <li><strong>Machine Learning:</strong> I have a solid understanding of machine learning concepts and techniques, including supervised learning, unsupervised learning, and deep learning. I apply these skills to solve real-world problems, such as predicting solar energy generation and analyzing large datasets. By using frameworks like scikit-learn, TensorFlow, and PyTorch, I build and deploy predictive models that provide valuable insights and solutions.</li>
+            
+            <li><strong>C++:</strong> I am proficient in C++ and use it for performance-critical applications, such as system-level programming and developing complex algorithms. I leverage C++ in projects that require high efficiency and real-time processing, including machine learning model optimization and simulation of large-scale systems. C++ allows me to handle low-level memory management and fine-tune performance to meet specific project requirements.</li>
+            
+    
+        </ul>
+
+        <h3>Experience</h3>
+        <p>Over the years, I have worked on several projects. Some of my key experiences include:</p>
+        <ul>
+            <li><strong>Project/Experience 1:</strong> Nifty50 Trend Prediction<br>
+                ◦ Developed a stock market prediction model focusing on Nifty50 trends using historical data from Yahoo Finance.<br>
+                ◦ Employed Random Forest Classifier machine learning algorithm to predict short-term market trends.<br>
+                ◦ Tools: Python, Sklearn, Pandas, NumPy, yfinance
+            </li>
+            <li><strong>Project/Experience 2:</strong> Solar Power Generation Predictor<br>
+                ◦ Developed a machine learning model that predicts solar power generation based on historical data and environmental conditions.<br>
+                ◦ Integrated weather data from the Accuweather API, geographical information, and time-based features for accurate predictions.<br>
+                ◦ Hosted the model on a Django web platform, where users can input location data to receive solar power predictions.<br>
+                ◦ Tools: Python, Sklearn, TensorFlow, Pandas, NumPy, Django, Accuweather API
+            </li>
+            <li><strong>Project/Experience 3:</strong> Breast Cancer Classification<br>
+                ◦ Built a model to classify tumors as malignant or benign using the Breast Cancer Wisconsin dataset.<br>
+                ◦ Achieved an accuracy of over 90% using SVM and Random Forest classifiers.<br>
+                ◦ Tools: Python, Sklearn, Pandas, NumPy
+            </li>
+            <li><strong>Project/Experience 4:</strong> Picturesque - Responsive Photography Website<br>
+                ◦ Designed and developed a responsive website for photography studios. Implemented dynamic layouts for a seamless user experience across devices.<br>
+                ◦ Tools: HTML, CSS, JavaScript
+            </li>
+            
+        </ul>
+
+        <h3>Current Work</h3>
+        <p>Currently, I am focusing on understanding the dynamics of the American markets and exploring how machine learning can be leveraged to develop advanced algorithmic trading strategies. My work involves analyzing market trends, identifying patterns in historical data, and applying machine learning techniques to build predictive models that can inform trading decisions. I'm continuously learning about financial data processing, backtesting strategies, and optimizing models to improve performance in real-world market conditions.</p>
+
+
+        <h3>Contact</h3>
+        <p>If you'd like to get in touch or collaborate on a project, feel free to reach out to me through the following channels:</p>
+        <ul>
+            <li><strong><a href="mailto:contact.mohakapoor@gmail.com">Email</a></strong> 
+            </li>
+            <li><strong><a href="https://www.linkedin.com/in/mohak-kapoor-24383828a/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Linkedin</a></strong> </li>
+            <li><strong><a href="https://github.com/mohakapoor">Github</a></strong></li>
+        </ul>
+    </div>
+
+
+    <footer>
+        <p>Thank you for visiting my page!</p>
+        <p>© 2024 <a href="https://github.com/mohakapoor" target="_blank">Mohak Kapoor</a></p>
+    </footer>
+</body>
+</html>

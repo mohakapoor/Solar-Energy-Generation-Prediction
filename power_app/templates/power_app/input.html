@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Energy Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'input_page' %}">Home</a>
+        <a href="{% url 'idea_page' %}">Idea</a>
+        <a href="{% url 'model_page' %}">Model</a>
+        <a href="{% url 'about_us_page' %}">About Me</a>
+    </nav>
+    <header>
+        <h1>Solar Energy Prediction</h1>
+        <p>Enter coordinates to estimate solar energy output</p>
+    </header>
+    <div class="input-section">
+        <h2>Coordinate Input</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" id="latitude" name="latitude" placeholder="Enter latitude">
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" id="longitude" name="longitude" placeholder="Enter longitude">
+            </div>
+        
+            <div class="form-group">
+                <label for="model">Select Model:</label>
+                <select name="model" id="model">
+                    <option value="prophet">Prophet</option>
+                    <option value="rfr">Random Forest Regressor</option>
+                </select>
+            </div>
+        
+            <button class="submit-btn" type="submit">Predict</button>
+        </form>
+        {% if energy_generated is not None %}
+        <div class="result">
+            <h3>Energy Generated (Potentially): {{ energy_generated }} Wh</h3>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="heatmap-container">
+        <h3>Predicted Solar Power Generation Heatmap Delhi</h3>
+        <!-- Embed the heatmap -->
+        <iframe src="{% static 'power_app/delhi_heatmap_detail.html' %}"></iframe>
+    </div>
+
+    <footer>
+        <p>© 2024 <a href="https://github.com/mohakapoor" target="_blank">Mohak Kapoor</a></p>
+    </footer>
+</body>
+</html>
