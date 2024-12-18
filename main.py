@@ -5,7 +5,7 @@ import joblib
 import numpy as np
 import pandas as pd
 clat,clon = 28.6139, 77.2090
-api_key = "ec1faaaf4f6046cbdc61fa9da425fbca"
+api_key = "_Your_API_Key"
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 def predict_for_coords(lat,lon):
