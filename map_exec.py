@@ -7,8 +7,8 @@ import pandas as pd
 
 
 
-api_key = "ec1faaaf4f6046cbdc61fa9da425fbca"
-api_key_2 = "2da24311dd44cdc6e2c76650184f57ca"
+api_key = "_Your_API_Key"
+
 
 clat,clon = 28.6139, 77.2090
 
