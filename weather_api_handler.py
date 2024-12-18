@@ -155,7 +155,7 @@ def generate_dataframe_coords(lat,lon,api_key):
     altimeter = sea_level*(1-elevation/44330)**(-5.255)
     altimeter_inchHg = altimeter*0.02953
 
-    spec_date =datetime(2018,10,29,hour=12,minute=0)
+    spec_date = datetime(2018, 10, 29, hour=datetime.now().hour, minute=0)
     weather_data.append({
         'ds' : spec_date,
         'Timezone' : 'Asia/Kolkata',
