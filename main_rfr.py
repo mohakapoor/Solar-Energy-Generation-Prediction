@@ -10,7 +10,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 def predict_for_coords_rfr(lat,lon):
-    api_key = "ec1faaaf4f6046cbdc61fa9da425fbca"
+    api_key = "_Your_API_Key"
 
     forecast = generate_dataframe_coords(lat,lon,api_key)
     forecast = scale_features(forecast)
